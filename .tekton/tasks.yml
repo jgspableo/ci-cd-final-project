@@ -3,7 +3,6 @@ kind: Task
 metadata:
   name: cleanup
 spec:
-  description: This task will clean up a workspace by deleting all of the files.
   workspaces:
     - name: source
   steps:
@@ -55,7 +54,7 @@ spec:
         echo "Installing dependencies..."
         npm ci
         echo "Running ESLint..."
-        npm run lint
+        npm run lint $(params.args)
 ---
 apiVersion: tekton.dev/v1beta1
 kind: Task
@@ -79,4 +78,4 @@ spec:
         echo "Installing dependencies..."
         npm ci
         echo "Running Jest tests..."
-        npm test
+        npm test $(params.args)
